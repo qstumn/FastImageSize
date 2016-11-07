@@ -17,7 +17,8 @@ int[] imageSize;
 imageSize = FastImageSize.with(url).get();
 
 //async
-FastImageSize.with(url).get(new FastImageSize.ImageSizeCallback() {   
+FastImageSize.with(url).get(new FastImageSize.ImageSizeCallback() { 
+
        @Override   
        public void onSizeReady(int[] size) { 
             imageSize = size;
@@ -31,8 +32,9 @@ url如果是网络地址，请不要前面省略http
 FastImageSize默认采用UrlConnection获取InputStream读取图片的文件头，可以替换成OkHttp、Volley等任何你正在用的第三方框架，按以下方法调用即可
 
 ```
-FastImageSize.with(url).customProvider(new InputStreamProvider() {    
-      @Override   
+FastImageSize.with(url).customProvider(new InputStreamProvider() {   
+
+     @Override   
      public InputStream getInputStream(String imagePath) { 
             // useyourmethods  
            return null;    
