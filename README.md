@@ -61,6 +61,7 @@ bmp | 80ms
 
 * http://blog.csdn.net/ryfdizuo/article/details/41250775
 * http://blog.csdn.net/adzcsx2/article/details/50503506
+* https://github.com/sdsykes/fastimage
 
 #LICENSE
 ```
