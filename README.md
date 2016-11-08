@@ -28,8 +28,7 @@ FastImageSize.with(url).get(new FastImageSize.ImageSizeCallback() {
 int imageWidth = imageSize[0];
 int imageHeight = imageSize[1];
 ```
-url如果是网络地址，请不要前面省略http
-FastImageSize默认采用UrlConnection获取InputStream读取图片的文件头，可以替换成OkHttp、Volley等任何你正在用的第三方框架，按以下方法调用即可
+url如果是网络地址，请不要前面省略http，FastImageSize默认采用UrlConnection获取InputStream读取图片的文件头，可以替换成OkHttp、Volley等任何你正在用的第三方框架，按以下方法调用即可
 
 ```
 FastImageSize.with(url).customProvider(new InputStreamProvider() {   
@@ -45,7 +44,7 @@ FastImageSize.with(url).customProvider(new InputStreamProvider() {
 
 ###3. 一些小问题
 
-暂时只支持PNG、GIF、BMP、JPG格式图片，在网络不顺畅的情况下并不保证一定能获取成功，如果不使用customProvider的情况下默认超时时间为1秒，而且由于JPG图片文件头比较特殊，JPG失败概率比其他图片类型略高，建议在图片完全下载后取出图片宽高和之前通过FastImageSize获得再次对比。
+暂时只支持PNG、GIF、BMP、JPG格式图片，在网络不顺畅的情况下并不保证一定能获取成功，如果不使用customProvider的情况下默认超时时间为1秒，而且由于JPG图片文件头比较特殊，JPG失败概率比其他图片类型略高，建议在图片完全下载后再次取出图片宽高和之前通过FastImageSize获得的进行对比。
 
 
 ###4.网速流畅前提下的测试结果
