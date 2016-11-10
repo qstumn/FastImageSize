@@ -14,7 +14,6 @@ import java.util.concurrent.Executors;
 import q.rorbin.fastimagesize.imp.BmpImageSize;
 import q.rorbin.fastimagesize.imp.DefaultImageSize;
 import q.rorbin.fastimagesize.imp.GifImageSize;
-import q.rorbin.fastimagesize.imp.JpgImageSizeCopy;
 import q.rorbin.fastimagesize.imp.JpgImageSize;
 import q.rorbin.fastimagesize.imp.PngImageSize;
 import q.rorbin.fastimagesize.net.InputStreamProvider;
@@ -55,23 +54,14 @@ public class FastImageSize {
         try {
             stream.read(buffer, 0, buffer.length);
             ImageSize imageSize = getImageSize(buffer);
-            if(imageSize instanceof JpgImageSizeCopy){
-                stream.close();
-                stream = mProvider.getInputStream(mLoader.mImagePath);
-            }
             size = imageSize.getImageSize(stream, buffer);
-            stream.close();
+            closeStream(stream, false);
+            return size;
         } catch (IOException e) {
             e.printStackTrace();
-            try {
-                stream.close();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-                return size;
-            }
+            closeStream(stream, true);
             return size;
         }
-        return size;
     }
 
     public void get(final ImageSizeCallback callback) {
@@ -97,6 +87,23 @@ public class FastImageSize {
             }
         }
         return new DefaultImageSize();
+    }
+
+    private void closeStream(final InputStream stream, final boolean isClose) {
+        mExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if (stream != null)
+                        stream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    if (!isClose) {
+                        closeStream(stream, true);
+                    }
+                }
+            }
+        });
     }
 
     public interface ImageSizeCallback {
