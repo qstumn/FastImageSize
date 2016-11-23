@@ -33,7 +33,7 @@ FastImageSize.with(url).get(new FastImageSize.ImageSizeCallback() {
 int imageWidth = imageSize[0];
 int imageHeight = imageSize[1];
 ```
-url如果是网络地址，请不要在前面省略http，FastImageSize默认采用UrlConnection获取InputStream读取图片的文件头，可以替换成OkHttp、Volley等任何你正在用的第三方框架，按以下方法调用即可
+url如果是网络地址，请不要在前面省略http，FastImageSize默认采用UrlConnection获取InputStream读取图片的文件头，可以替换成你自己使用的第三方库，按以下方法调用即可
 
 ```
 FastImageSize.with(url).customProvider(new InputStreamProvider() {   
