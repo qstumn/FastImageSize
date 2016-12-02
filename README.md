@@ -4,11 +4,16 @@ FastImageSize是一个不需要完全下载就可以快速获得网络图片宽�
 
 ####有什么用处
 最适合的使用场景是在使用ListView或者RecyclerView构建的聊天界面或者朋友圈图片墙，你可能需要在itemView中加载图片时预先知道图片的大小以便给ImageView设置合适的占位宽高，不然等到图片加载完毕后，ImageView会突然变大或变小导致闪屏跳屏等情况，如果你有更好的办法和建议并愿意和我分享，请在Issues中提交给我或者给我发邮件，谢谢。
-
+##Change Log
+```
+    v1.0.1
+    1. 修改了关流的方式,提高尺寸信息的返回速度
+```
+    
 ## how to use:
 ###1.gradle
 ```
-     compile 'q.rorbin:FastImageSize:1.0.0'
+     compile 'q.rorbin:FastImageSize:1.0.1'
 ```
 ###2.code
 ```
@@ -28,7 +33,7 @@ FastImageSize.with(url).get(new FastImageSize.ImageSizeCallback() {
 int imageWidth = imageSize[0];
 int imageHeight = imageSize[1];
 ```
-url如果是网络地址，请不要前面省略http，FastImageSize默认采用UrlConnection获取InputStream读取图片的文件头，可以替换成OkHttp、Volley等任何你正在用的第三方框架，按以下方法调用即可
+url如果是网络地址，请不要在前面省略http，FastImageSize默认采用UrlConnection获取InputStream读取图片的文件头，可以替换成你自己使用的第三方库，按以下方法调用即可
 
 ```
 FastImageSize.with(url).customProvider(new InputStreamProvider() {   
@@ -50,10 +55,10 @@ FastImageSize.with(url).customProvider(new InputStreamProvider() {
 ###4.网速流畅前提下的测试结果
 ImageType | AverageTime 
 ---|---
-jpg | 100ms 
-gif | 180ms
-png | 60ms
-bmp | 80ms
+jpg | 80ms 
+gif | 60ms
+png | 50ms
+bmp | 70ms
 
 
 
