@@ -31,7 +31,7 @@ public class JpgImageSizeCopy extends ImageSize {
     public boolean isSupportImageType(byte[] buffer) {
         if (buffer == null || buffer.length <= 0)
             return false;
-        //Jpg ：FF D8
+        //Jpg FF D8
         if (buffer.length >= 2) {
             return buffer[0] == (byte) 0xFF && buffer[1] == (byte) 0xD8;
         }

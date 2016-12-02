@@ -11,6 +11,8 @@ import q.rorbin.fastimagesize.ImageSize;
 import q.rorbin.fastimagesize.ImageType;
 import q.rorbin.fastimagesize.util.ByteArrayUtil;
 
+import static android.content.ContentValues.TAG;
+
 /**
  * Created by chqiu on 2016/10/26.
  */
@@ -25,7 +27,7 @@ public class JpgImageSize extends ImageSize {
     public boolean isSupportImageType(byte[] buffer) {
         if (buffer == null || buffer.length <= 0)
             return false;
-        //Jpg ：FF D8
+        //Jpg FF D8
         if (buffer.length >= 2) {
             return buffer[0] == (byte) 0xFF && buffer[1] == (byte) 0xD8;
         }
@@ -77,29 +79,35 @@ public class JpgImageSize extends ImageSize {
             }
             if (endOfStream != -1) {
                 byte[] mergeHead = new byte[]{0, 0};
-                int skipLength = ByteBuffer.wrap(ByteArrayUtil.merge(mergeHead, markerLength)).getInt();
+                long skipLength = ByteBuffer.wrap(ByteArrayUtil.merge(mergeHead, markerLength)).getInt();
                 skip(stream, bufferList, skipLength - 2);
             }
         }
         return endOfStream;
     }
 
-    private void skip(InputStream stream, LinkedList<Byte> bufferList, int skipLength) throws IOException {
+    private void skip(InputStream stream, LinkedList<Byte> bufferList, long skipLength) throws IOException {
+        long real_skip;
         if (bufferList.isEmpty()) {
-            stream.skip(skipLength);
+            real_skip = stream.skip(skipLength);
         } else {
             if (skipLength > bufferList.size()) {
-                stream.skip(skipLength - bufferList.size());
+                real_skip = stream.skip(skipLength - bufferList.size());
+                real_skip += bufferList.size();
                 bufferList.clear();
             } else if (skipLength == bufferList.size()) {
+                real_skip = bufferList.size();
                 bufferList.clear();
             } else {
                 for (int i = 0; i < skipLength; i++) {
                     bufferList.remove();
                 }
+                real_skip = skipLength;
             }
         }
-
+        if (real_skip < skipLength) {
+            skip(stream, bufferList, skipLength - real_skip);
+        }
     }
 
     private byte[] readByteArray(InputStream stream, LinkedList<Byte> bufferList, int count) throws IOException {

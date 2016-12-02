@@ -25,7 +25,7 @@ public class GifImageSize extends ImageSize {
     public boolean isSupportImageType(byte[] buffer) {
         if (buffer == null || buffer.length <= 0)
             return false;
-        // Gif：47 49 46 38 39|37 61
+        // Gif 47 49 46 38 39|37 61
         if (buffer.length >= 6) {
             return buffer[0] == 0x47 && buffer[1] == 0x49 && buffer[2] == 0x46 && buffer[3] == 0x38
                     && (buffer[4] == 0x39 || buffer[4] == 0x37) && buffer[5] == 0x61;

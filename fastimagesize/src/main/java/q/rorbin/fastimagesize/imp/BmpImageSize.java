@@ -22,7 +22,7 @@ public class BmpImageSize extends ImageSize {
     public boolean isSupportImageType(byte[] buffer) {
         if (buffer == null || buffer.length <= 0)
             return false;
-        // Bmp ：42 4D
+        // Bmp  42 4D
         if (buffer.length >= 2) {
             return buffer[0] == 0x42 && buffer[1] == 0x4D;
         }

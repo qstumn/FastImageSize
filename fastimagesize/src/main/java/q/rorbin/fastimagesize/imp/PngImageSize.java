@@ -25,7 +25,7 @@ public class PngImageSize extends ImageSize {
     public boolean isSupportImageType(byte[] buffer) {
         if (buffer == null || buffer.length <= 0)
             return false;
-        // Png：89 50 4E 47 0D 0A 1A 0A
+        // Png 89 50 4E 47 0D 0A 1A 0A
         if (buffer.length >= 8) {
             return (buffer[0] == (byte) 0x89 && buffer[1] == 0x50 && buffer[2] == 0x4E && buffer[3] == 0x47
                     && buffer[4] == 0x0D && buffer[5] == 0x0A && buffer[6] == 0x1A && buffer[7] == 0x0A);
