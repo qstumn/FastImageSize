@@ -15,7 +15,7 @@ FastImageSize是一个不需要完全下载就可以快速获得网络图片宽�
     
 ## how to use:
 ###1.gradle
-```
+```groovy
      compile 'q.rorbin:FastImageSize:1.0.2'
 ```
 ###2.code
