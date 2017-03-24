@@ -55,16 +55,8 @@ FastImageSize.with(url).customProvider(new InputStreamProvider() {
 暂时只支持PNG、GIF、BMP、JPG格式图片，在网络不顺畅的情况下并不保证一定能获取成功，如果不使用customProvider的情况下默认超时时间为1秒，而且由于JPG图片文件头比较特殊，JPG失败概率比其他图片类型略高，建议在图片完全下载后再次取出图片宽高和之前通过FastImageSize获得的进行对比。
 
 
-### 4.网速流畅前提下的测试结果
-ImageType | AverageTime 
----|---
-jpg | 80ms 
-gif | 60ms
-png | 50ms
-bmp | 70ms
-
-
-
+### 5.更新计划
+重构项目代码，减少中间对象创建，添加图片类型的获取，使用懒加载的方式创建异步线程池，增加WebP支持
 ## Thanks For
 
 * http://blog.csdn.net/ryfdizuo/article/details/41250775
