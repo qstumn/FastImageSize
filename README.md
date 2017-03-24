@@ -11,7 +11,7 @@ FastImageSize是一个不需要完全下载就可以快速获得网络图片宽�
      compile 'q.rorbin:FastImageSize:1.0.2'
 ```
 ### 2.code
-```
+```java
 int[] imageSize;
 //sync
 imageSize = FastImageSize.with(url).get();
@@ -30,7 +30,7 @@ int imageHeight = imageSize[1];
 ```
 url如果是网络地址，请不要在前面省略http，FastImageSize默认采用UrlConnection获取InputStream读取图片的文件头，可以替换成你自己使用的第三方库，按以下方法调用即可
 
-```
+```java
 FastImageSize.with(url).customProvider(new InputStreamProvider() {   
 
      @Override   
@@ -47,7 +47,7 @@ FastImageSize.with(url).customProvider(new InputStreamProvider() {
 暂时只支持PNG、GIF、BMP、JPG格式图片，在网络不顺畅的情况下并不保证一定能获取成功，如果不使用customProvider的情况下默认超时时间为1秒，而且由于JPG图片文件头比较特殊，JPG失败概率比其他图片类型略高，建议在图片完全下载后再次取出图片宽高和之前通过FastImageSize获得的进行对比。
 
 
-### 5.更新计划
+### 4.更新计划
 重构项目代码，减少中间对象创建，添加图片类型的获取，使用懒加载的方式创建异步线程池，增加WebP支持
 ## Thanks For
 
