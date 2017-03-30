@@ -1,12 +1,14 @@
 # FastImageSize
-FastImageSize是一个不需要完全下载就可以快速获得网络图片尺寸信息和图片类型的android libary
-    
+FastImageSize是一个快速获得网络图片尺寸信息和图片类型的android libary
+
+FastImageSize通过读取图片文件头解析图片信息不需要完全下载图片，内部建有三级缓存，可以快速轻松的实现设置占位图尺寸、图片流式布局、动态调整View尺寸等功能。
+    
 ## how to use:
 ### 1.gradle
 ```groovy
      compile 'q.rorbin:FastImageSize:1.0.3'
 ```
-     VERSION_CODE : [here](https://github.com/qstumn/BadgeView/releases)
+   VERSION_CODE : [here](https://github.com/qstumn/BadgeView/releases)
 ### 2.code
 ```java
 int[] imageSize;
