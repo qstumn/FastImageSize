@@ -1,23 +1,21 @@
-package q.rorbin.fastimagesize.imp;
+package q.rorbin.fastimagesize.parser;
 
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-import q.rorbin.fastimagesize.ImageSize;
-import q.rorbin.fastimagesize.ImageType;
 import q.rorbin.fastimagesize.util.ByteArrayUtil;
 
 
 /**
- * Created by chqiu on 2016/10/26.
+ * @author chqiu
+ *         Email:qstumn@163.com
  */
 
 public class PngImageSize extends ImageSize {
     @Override
-    public ImageType getSupportImageType() {
+    public int getSupportImageType() {
         return ImageType.PNG;
     }
 
@@ -37,12 +35,13 @@ public class PngImageSize extends ImageSize {
 
     @Override
     public int[] getImageSize(InputStream stream, byte[] buffer) throws IOException {
-        int[] size = new int[2];
+        int[] size = new int[3];
         if (buffer == null || buffer.length <= 0)
             return size;
         buffer = ByteArrayUtil.findSizeBytes(stream, buffer, 16, 8);
         size[0] = ByteBuffer.wrap(buffer, 0, 4).getInt();
         size[1] = ByteBuffer.wrap(buffer, 4, 4).getInt();
+        size[2] = getSupportImageType();
         return size;
     }
 }

@@ -1,25 +1,22 @@
-package q.rorbin.fastimagesize.imp;
+package q.rorbin.fastimagesize.parser;
 
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.LinkedList;
 
-import q.rorbin.fastimagesize.ImageSize;
-import q.rorbin.fastimagesize.ImageType;
 import q.rorbin.fastimagesize.util.ByteArrayUtil;
 
-import static android.content.ContentValues.TAG;
 
 /**
- * Created by chqiu on 2016/10/26.
+ * @author chqiu
+ *         Email:qstumn@163.com
  */
 
 public class JpgImageSize extends ImageSize {
     @Override
-    public ImageType getSupportImageType() {
+    public int getSupportImageType() {
         return ImageType.JPG;
     }
 
@@ -36,7 +33,7 @@ public class JpgImageSize extends ImageSize {
 
     @Override
     public int[] getImageSize(InputStream stream, byte[] buffer) throws IOException {
-        int[] size = new int[2];
+        int[] size = new int[3];
         if (buffer == null || buffer.length <= 0)
             return size;
         LinkedList<Byte> bufferList = new LinkedList<>();
@@ -52,6 +49,7 @@ public class JpgImageSize extends ImageSize {
                 endOfStream = parserMarker(stream, bufferList, size);
             }
         }
+        size[2] = getSupportImageType();
         return size;
     }
 

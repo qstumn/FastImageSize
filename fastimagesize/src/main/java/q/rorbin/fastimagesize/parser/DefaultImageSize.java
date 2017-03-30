@@ -1,18 +1,16 @@
-package q.rorbin.fastimagesize.imp;
+package q.rorbin.fastimagesize.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import q.rorbin.fastimagesize.ImageSize;
-import q.rorbin.fastimagesize.ImageType;
-
 /**
- * Created by chqiu on 2016/10/26.
+ * @author chqiu
+ *         Email:qstumn@163.com
  */
 
 public class DefaultImageSize extends ImageSize {
     @Override
-    public ImageType getSupportImageType() {
+    public int getSupportImageType() {
         return ImageType.NULL;
     }
 
@@ -23,6 +21,6 @@ public class DefaultImageSize extends ImageSize {
 
     @Override
     public int[] getImageSize(InputStream stream, byte[] buffer) throws IOException {
-        return new int[2];
+        return new int[3];
     }
 }

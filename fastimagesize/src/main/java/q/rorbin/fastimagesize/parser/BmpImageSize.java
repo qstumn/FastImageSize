@@ -1,20 +1,19 @@
-package q.rorbin.fastimagesize.imp;
+package q.rorbin.fastimagesize.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-import q.rorbin.fastimagesize.ImageSize;
-import q.rorbin.fastimagesize.ImageType;
 import q.rorbin.fastimagesize.util.ByteArrayUtil;
 
 /**
- * Created by chqiu on 2016/10/26.
+ * @author chqiu
+ *         Email:qstumn@163.com
  */
 
 public class BmpImageSize extends ImageSize {
     @Override
-    public ImageType getSupportImageType() {
+    public int getSupportImageType() {
         return ImageType.BMP;
     }
 
@@ -31,12 +30,13 @@ public class BmpImageSize extends ImageSize {
 
     @Override
     public int[] getImageSize(InputStream stream, byte[] buffer) throws IOException {
-        int[] size = new int[2];
+        int[] size = new int[3];
         if (buffer == null || buffer.length <= 0)
             return size;
         buffer = ByteArrayUtil.findSizeBytes(stream, buffer, 18, 8);
         size[0] = ByteBuffer.wrap(ByteArrayUtil.reverse(ByteArrayUtil.cut(buffer, 0, 4))).getInt();
         size[1] = ByteBuffer.wrap(ByteArrayUtil.reverse(ByteArrayUtil.cut(buffer, 4, 4))).getInt();
+        size[2] = getSupportImageType();
         return size;
     }
 }

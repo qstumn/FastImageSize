@@ -1,23 +1,24 @@
 package q.rorbin.fastimagesize.net;
 
-import android.net.Uri;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static android.R.attr.scheme;
-import static android.content.ContentValues.TAG;
-
 /**
- * Created by chqiu on 2016/10/26.
+ * @author chqiu
+ *         Email:qstumn@163.com
  */
 
 public class DefaultInputStreamProvider implements InputStreamProvider {
+    private static final DefaultInputStreamProvider INSTANCE = new DefaultInputStreamProvider();
+
+    public static DefaultInputStreamProvider getInstance() {
+        return INSTANCE;
+    }
+
     @Override
     public InputStream getInputStream(String imagePath) {
         InputStream stream = null;

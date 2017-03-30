@@ -1,29 +1,26 @@
-package q.rorbin.fastimagesize.imp;
+package q.rorbin.fastimagesize.parser;
 
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 
-import q.rorbin.fastimagesize.ImageSize;
-import q.rorbin.fastimagesize.ImageType;
 import q.rorbin.fastimagesize.util.ByteArrayUtil;
 
-import static android.content.ContentValues.TAG;
-import static q.rorbin.fastimagesize.imp.JpgImageSizeCopy.JpgMarker.APP0;
-import static q.rorbin.fastimagesize.imp.JpgImageSizeCopy.JpgMarker.EXIF;
-import static q.rorbin.fastimagesize.imp.JpgImageSizeCopy.JpgMarker.MARKER;
-import static q.rorbin.fastimagesize.imp.JpgImageSizeCopy.JpgMarker.OTHER;
-import static q.rorbin.fastimagesize.imp.JpgImageSizeCopy.JpgMarker.SOF0;
+import static q.rorbin.fastimagesize.parser.JpgImageSizeCopy.JpgMarker.APP0;
+import static q.rorbin.fastimagesize.parser.JpgImageSizeCopy.JpgMarker.EXIF;
+import static q.rorbin.fastimagesize.parser.JpgImageSizeCopy.JpgMarker.MARKER;
+import static q.rorbin.fastimagesize.parser.JpgImageSizeCopy.JpgMarker.OTHER;
+import static q.rorbin.fastimagesize.parser.JpgImageSizeCopy.JpgMarker.SOF0;
 
 /**
- * Created by chqiu on 2016/10/26.
+ * @author chqiu
+ *         Email:qstumn@163.com
  */
 
 public class JpgImageSizeCopy extends ImageSize {
     @Override
-    public ImageType getSupportImageType() {
+    public int getSupportImageType() {
         return ImageType.JPG;
     }
 

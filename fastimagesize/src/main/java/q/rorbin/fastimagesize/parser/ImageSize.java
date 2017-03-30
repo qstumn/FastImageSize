@@ -1,15 +1,16 @@
-package q.rorbin.fastimagesize;
+package q.rorbin.fastimagesize.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created by chqiu on 2016/10/26.
+ * @author chqiu
+ *         Email:qstumn@163.com
  */
 
 public abstract class ImageSize {
 
-    public abstract ImageType getSupportImageType();
+    public abstract int getSupportImageType();
 
     public abstract boolean isSupportImageType(byte[] buffer);
 

@@ -3,7 +3,8 @@ package q.rorbin.fastimagesize.net;
 import java.io.InputStream;
 
 /**
- * Created by chqiu on 2016/10/26.
+ * @author chqiu
+ *         Email:qstumn@163.com
  */
 
 public interface InputStreamProvider {
