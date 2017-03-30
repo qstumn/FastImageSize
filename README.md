@@ -16,7 +16,7 @@ int[] imageSize;
 imageSize = FastImageSize.with(url).get();
 
 //async
-FastImageSize.with(url).get(new FastImageSize.ImageSizeCallback() { 
+FastImageSize.with(url).get(new ImageSizeCallback() { 
 
        @Override   
        public void onSizeReady(int[] size) { 
