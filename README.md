@@ -29,26 +29,33 @@ int imageHeight = imageSize[1];
 int imageType = imageSize[2];
 ```
 
-或者你需要FastImageSize根据图片尺寸帮你设置View宽高 ：
-
+  或者你需要FastImageSize根据图片尺寸帮你设置View宽高 ：
 ```java
 FastImageSize.with(url).into(imageView);
 FastImageSize.with(url).override(500).into(imageView);
 ```
-override方法可以根据你提供的限制值对宽高结果进行等比例缩放
+  override方法可以根据你提供的限制值对宽高结果进行等比例缩放
 
 
-FastImageSize默认使用UrlConnection获取InputStream读取图片的文件头，可以替换成你自己使用的第三方库，按以下方法调用即可
-
+  FastImageSize默认使用UrlConnection获取InputStream读取图片的文件头，可以替换成你自己使用的第三方库，按以下方法调用即可
 ```java
 FastImageSize.with(url).customProvider(yourProvider).get();
 ```
 
-FastImageSize默认使用LruCache和DiskLruCache实现内存缓存和磁盘缓存，如果你不需要缓存每次都要重新读取，按以下方法调用即可
+  FastImageSize默认使用LruCache和DiskLruCache实现内存缓存和磁盘缓存，如果你不需要缓存每次都要重新读取，按以下方法调用即可
 ```java
 FastImageSize.with(url).setUseCache(false).into(imageView);
 ```
+### 3.permission
+```xml
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+```
 
+### 4.support
+  JPEG GIF BMP PNG 
+  
 ## Thanks For
 
 * http://blog.csdn.net/ryfdizuo/article/details/41250775
