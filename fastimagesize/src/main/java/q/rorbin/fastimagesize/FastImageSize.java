@@ -74,7 +74,7 @@ public class FastImageSize {
 
     int[] get(FastImageLoader loader) {
         String cacheKey = GlobalUtil.hashKeyForLru(loader.mImagePath);
-        int[] size = getByCache(cacheKey);
+        int[] size = getByCache(cacheKey, loader.mUseCache);
         if (size == null) {
             InputStream stream = loader.mProvider.getInputStream(loader.mImagePath);
             if (stream == null) {
@@ -86,7 +86,7 @@ public class FastImageSize {
                 ImageSize imageSize = getImageSize(buffer);
                 size = imageSize.getImageSize(stream, buffer);
                 if (size[2] != ImageType.NULL) {
-                    putToCache(cacheKey, size);
+                    putToCache(cacheKey, size, loader.mUseCache);
                 }
                 closeStream(stream, false);
             } catch (IOException e) {
@@ -119,7 +119,10 @@ public class FastImageSize {
         get(new OverrideCallback(view, loader.mOverrideSize), loader);
     }
 
-    private int[] getByCache(String key) {
+    private int[] getByCache(String key, boolean useCache) {
+        if (!useCache) {
+            return null;
+        }
         int[] size = mMemoryCache.get(key);
         if (size == null) {
             size = getByDiskCache(key);
@@ -159,7 +162,10 @@ public class FastImageSize {
         return size;
     }
 
-    private void putToCache(String key, int[] size) {
+    private void putToCache(String key, int[] size, boolean useCache) {
+        if (!useCache) {
+            return;
+        }
         mMemoryCache.put(key, size);
         putToDiskCache(key, size);
     }

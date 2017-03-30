@@ -16,6 +16,7 @@ public class FastImageLoader {
     InputStreamProvider mProvider;
     String mImagePath;
     int mOverrideSize;
+    boolean mUseCache;
     private FastImageSize mFastImageSize;
 
     private FastImageLoader(String imagePath, FastImageSize fastImageSize) {
@@ -23,6 +24,7 @@ public class FastImageLoader {
         mImagePath = imagePath;
         mProvider = DefaultInputStreamProvider.getInstance();
         mOverrideSize = -1;
+        mUseCache = true;
     }
 
     static FastImageLoader newInstance(String imagePath, FastImageSize fastImageSize) {
@@ -42,6 +44,11 @@ public class FastImageLoader {
             throw new IllegalStateException("overrideSize must be bigger than 0");
         }
         mOverrideSize = overrideSize;
+        return this;
+    }
+
+    public FastImageLoader setUseCache(boolean useCache) {
+        mUseCache = useCache;
         return this;
     }
 
