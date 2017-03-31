@@ -8,7 +8,7 @@ FastImageSize通过读取图片文件头解析图片信息不需要完全下载�
 ```groovy
      compile 'q.rorbin:FastImageSize:1.0.3'
 ```
-   VERSION_CODE : [here](https://github.com/qstumn/BadgeView/releases)
+   VERSION_CODE : [here](https://github.com/qstumn/FastImageSize/releases)
 ### 2.code
 ```java
 int[] imageSize;
