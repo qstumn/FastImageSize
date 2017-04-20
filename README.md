@@ -1,5 +1,6 @@
 # FastImageSize
 [ ![Download](https://api.bintray.com/packages/qstumn/maven/FastImageSize/images/download.svg) ](https://bintray.com/qstumn/maven/FastImageSize/_latestVersion)
+
 FastImageSize是一个快速获得网络图片尺寸信息和图片类型的android libary
 
 FastImageSize通过读取图片文件头解析图片信息不需要完全下载图片，内部建有三级缓存，可以快速轻松的实现设置占位图尺寸、图片流式布局、动态调整View尺寸等功能。
